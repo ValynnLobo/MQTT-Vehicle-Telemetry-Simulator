@@ -60,3 +60,58 @@ source .venv/bin/activate  # On macOS/Linux
 
 # Install dependencies
 pip install -r requirements.txt
+```
+
+---
+
+## Configuration
+``` python
+BROKER_HOST = "localhost"
+BROKER_PORT = 1883
+TLS_ENABLED = False
+
+CAR_COUNT = 5
+PUBLISH_INTERVAL = 2  # seconds
+TOPIC = "cars/telemetry"
+
+# to connect to a different MQTT broker:
+BROKER_HOST = "test.mosquitto.org"
+BROKER_PORT = 1883
+TLS_ENABLED = True
+```
+
+---
+
+## Running the Simulator
+From the src directory run:
+
+```bash
+python simulator.py
+```
+
+Expected output:
+```csharp
+[SIM] Connecting to localhost:1883 TLS=off QoS=1
+[SIM] on_connect rc=0 (0=OK)
+[SIM] Car-01 publishing to cars/telemetry: {"speed": 74, "fuel": 68, "lat": -37.81, "lon": 144.96}
+```
+
+You can verify messages with a local MQTT client:
+```bash
+mosquitto_sub -h localhost -t "cars/telemetry"
+```
+
+---
+
+## Record & Replay
+You can replay recorded telemetry data from a CSV file by setting:
+
+```ini
+REPLAY_FILE=data/session1.csv
+```
+Each row should include columns like: timestamp, rpm, throttle, speed
+
+---
+
+## License
+© 2025 Valynn Lobo. All rights reserved. This is a personal learning project.
