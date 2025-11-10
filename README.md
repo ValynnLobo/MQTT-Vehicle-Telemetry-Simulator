@@ -38,5 +38,25 @@ It can connect to any MQTT broker and is easily configurable through environment
   The project can be containerized and run with minimal setup.
 
 ---
+## Installation
 
-## Project Structure
+### Prerequisites
+- Python 3.9 or higher
+- [Eclipse Mosquitto](https://mosquitto.org/download/) or any MQTT broker
+- `virtualenv` for isolated environment setup
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/<your-username>/mqtt-car-sim.git
+cd mqtt-car-sim
+
+# Create virtual environment
+python -m venv .venv
+.venv\Scripts\activate   # On Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+#
